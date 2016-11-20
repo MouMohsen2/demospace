@@ -1,0 +1,16 @@
+<?php
+$servername = "sql103.byethost31.com";
+$username = "b31_19186607";
+$password = "DemoSpacemo1";
+
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=b31_19186607_bdiver_demo", $username, $password);
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    }
+catch(PDOException $e)
+    {
+    echo "Connection failed: " . $e->getMessage();
+    }
+
+?>
