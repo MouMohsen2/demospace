@@ -1,6 +1,4 @@
-<head>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-</head>
+
 
 <section id="carousel">
     <div class="quote"><i class="fa fa-quote-left fa-4x"></i></div>

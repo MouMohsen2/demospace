@@ -13,34 +13,45 @@
   echo '<hr></hr>';
   echo '<p>'.$row['details'].'</p>';
   echo '</div>';
-
   if($row['event_id'] == ''){
       header('Location: ./');
       exit;
     }
   ?>
+
 <!--  Show Event End -->
   <hr></hr>
-<!-- Booking form -->
-  <form method="post" action="book.php" autocomplete="off">
-    <div class="form-group">
-      <div class="input-group">
-        <span class="input-group-addon"><span class="glyphicon glyphicon-shopping-cart"></span></span>
-         <input type="number" name="tickets" class="form-control" value="<?php echo $tickets; ?>" placeholder="Number Of Tickets. (5 Tickets Max.)" min="1" max="5" maxlength="2" />
-       </div>
-       <span class="text-danger"><?php echo $ticketsError; ?></span>
-     </div>
-     <input type="number" name="event_id" hidden value="<?php echo $eventid;?>">
-     <input type="number" name="user_id" hidden value="<?php echo $_SESSION['user'];?>">
+  <div class="col-md-6">
+    <ul style="list-style-type:none;">
+      <li> <i class="fa fa-map-marker"></i><?php echo '  '.$row['location'];?></li>
+      <li><i class="fa fa-ticket"></i><?php echo '  Tickets Available: '.$row['tickets_available'];?></li>
+      <li> <i class="fa fa-money"></i><?php echo '  '.$row['price'].' EGP';?></li>
+    </ul>
+  </div>
 
-     <div class="form-group">
+<!-- Booking form -->
+  <div class="col-md-6">
+    <form method="post" action="book.php" autocomplete="off">
+
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon"><span class="glyphicon glyphicon-shopping-cart"></span></span>
+          <input type="number" name="tickets" class="form-control" value="" placeholder="Number Of Tickets. (5 Tickets Max.)" min="1" max="5" maxlength="2" />
+        </div>
+        <span class="text-danger"><?php echo $ticketsError; ?></span>
+      </div>
+      <input type="number" name="event_id" hidden value="<?php echo $eventid;?>">
+      <input type="number" name="user_id" hidden value="<?php echo $_SESSION['user'];?>">
+
+      <div class="form-group">
        <?php if (isset($_SESSION['user']) != '') {
-         echo '<button type="submit" class="btn btn-block btn-primary" name="book">Book</button>';
+         echo '<button type="submit" class="btn btn-block btn-primary" name="book">Book Now</button>';
        }?>
-     </div>
-   </form>
+      </div>
+    </form>
    <?php if (isset($_SESSION['user']) == '') {
      echo '<button class="btn btn-primary">Signup Now & Book</button>';
    }?>
- </div>
 <!-- Booking form End -->
+    </div>
+  </div>

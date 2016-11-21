@@ -12,7 +12,7 @@
   echo '<h3>'.$row['email'].'</h3>';
   echo '<hr></hr>';
   echo '<p>'.$row['address'].'</p>';
-  echo '<p>+20'.$row['phone'].'</p>';
+  echo '<p>0'.$row['phone'].'</p>';
   echo '</div>';
 
   if($row['user_id'] == ''){

@@ -60,8 +60,8 @@ if ( isset($_SESSION['user'])!="" ) {
 
 <!-- Begin HTML -->
 <div id="login-form">
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off">
-     <div class="col-md-6">
+  <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off">
+    <div class="col-md-6">
 
        <div class="form-group">
          <h2 class="">Old friend? Sign In!</h2>

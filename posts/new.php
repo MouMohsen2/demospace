@@ -2,10 +2,7 @@
 ob_start();
 session_start();
 require_once '../includes/config.php';
-if ( isset($_SESSION['user'])=="" ) {
- header("Location: ../index.php");
- exit;
-}
+
 if (isset($_POST['submit'])) { //check if form was submitted
   try {
       $title = $_POST['title']; //get input text
@@ -32,31 +29,37 @@ if (isset($_POST['submit'])) { //check if form was submitted
 
     ?>
 
-<!-- Create Post Form -->
-<form action='' method='post'>
+    <!-- Create Post Form -->
+    <form action='' method='post'>
 
-    <p>
-      <label>Title</label><br />
-      <input type='text' name='title'>
-    </p>
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+            <input type="text" name="title" class="form-control" placeholder="Post Title" value="<?php echo $title; ?>" maxlength="80" />
+          </div>
+          <span class="text-danger"><?php echo $titleError; ?></span>
+        </div>
 
-    <p>
-      <label>Description</label><br />
-    <textarea name='content' cols='60' rows='10'>
-    </textarea>
-  </p>
-  <label class="control-label">Profile Img.</label></td>
-        <input class="input-group" type="file" name="user_image" accept="image/*" />
+        <div class="form-group">
+          <div class="input-group">
+            <textarea name="content" cols='60' rows='10' class="form-control" placeholder="Content goes here .." value="<?php echo $content; ?>"></textarea>
+          </div>
+          <span class="text-danger"><?php echo $content; ?></span>
+        </div>
 
-    <p>
-      <input type='submit' name='submit' value='Submit'>
-    </p>
-
-</form>
+        <div class="form-group">
+          <button type="submit" class="btn btn-block btn-primary" name="submit">Add post</button>
+        </div>
+    </form>
 
 <!-- Replace Text Area With tinyMCE editor -->
-<script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 <script>
+$(document).on('focusin', function(e) {
+    if ($(event.target).closest(".mce-window").length) {
+        e.stopImmediatePropagation();
+    }
+});
         tinymce.init({
             selector: "textarea",
             plugins: [

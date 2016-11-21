@@ -2,10 +2,7 @@
 ob_start();
 session_start();
 require_once '../includes/config.php';
-// if ( isset($_SESSION['user'])=="" ) {
-//  header("Location: ../index.php");
-//  exit;
-// }
+
 if (isset($_POST['submit'])) {
   try {
      //get inputs
@@ -14,19 +11,22 @@ if (isset($_POST['submit'])) {
     $location = $_POST['location'];
     $date = $_POST['date'];
     $tickets = $_POST['tickets'];
+    $price = $_POST['price'];
+
 
       //insert into database
-    $stmt = $conn->prepare('INSERT INTO events (title,details,location,date,tickets_available) VALUES (:title, :details,:location,:date,:tickets)');
+    $stmt = $conn->prepare('INSERT INTO events (title,details,location,date,tickets_available,price) VALUES (:title, :details,:location,:date,:tickets,:price)');
     $stmt->execute(array(
            ':title' => $title,
            ':details' => $details,
            ':location' => $location,
            ':date' => $date,
-           ':tickets' => $tickets
+           ':tickets' => $tickets,
+           ':price' => $price
        ));
 
        //redirect to index page
-       header('Location: ../events/index-event.php?action=added');
+       header('Location: ../events/index.php?action=added');
       exit;
   } catch (PDOException $e) {
       echo $e->getMessage();
@@ -38,37 +38,65 @@ if (isset($_POST['submit'])) {
 <!-- Create Post Form -->
 <form action='' method='post'>
 
-    <p>
-      <label>Title</label><br />
-      <input type='text' name='title'>
-    </p>
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+        <input type="text" name="title" class="form-control" placeholder="Event Title" value="<?php echo $title; ?>" maxlength="90" />
+      </div>
+      <span class="text-danger"><?php echo $titleError; ?></span>
+    </div>
 
-    <p>
-      <label>Details</label><br />
-    <textarea name='details' cols='60' rows='10'>
-    </textarea>
-  </p>
-  <label class="control-label">Date</label></td>
-        <input class="input-group" type="date" name="date" />
+    <div class="form-group">
+      <div class="input-group">
+        <textarea name="details" cols='60' rows='10' class="form-control" placeholder="Content goes here .." value="<?php echo $details; ?>"></textarea>
+      </div>
+      <span class="text-danger"><?php echo $details; ?></span>
+    </div>
 
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+        <input type="date" name="date" class="form-control" value="<?php echo $date; ?>" />
+      </div>
+      <span class="text-danger"><?php echo $dateError; ?></span>
+    </div>
 
-    <p>
-      <label>location</label><br />
-      <input type='location' name='location'>
-    </p>
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-tent"></span></span>
+        <input type="text" name="location" class="form-control" placeholder="Enter Location" value="<?php echo $location; ?>" />
+      </div>
+      <span class="text-danger"><?php echo $locationError; ?></span>
+    </div>
 
-    <span>
-      <label>Tickets Available</label>
-      <input type='number' name='tickets'>
-    </span>
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-tags"></span></span>
+        <input type="text" name="tickets" class="form-control" placeholder="Tickets Available" value="<?php echo $tickets; ?>" />
+      </div>
+      <span class="text-danger"><?php echo $ticketsError; ?></span>
+    </div>
 
-    <p>
-      <button class="btn btn-primary" name="submit" type="submit" value='Submit'>Create Event</button>
-    </p>
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></span>
+        <input type="text" name="price" class="form-control" placeholder="price" value="<?php echo $price; ?>" />
+      </div>
+      <span class="text-danger"><?php echo $oriceError; ?></span>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-block btn-primary" name="submit">Add Event</button>
+    </div>
 </form>
 
 <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 <script>
+$(document).on('focusin', function(e) {
+    if ($(event.target).closest(".mce-window").length) {
+        e.stopImmediatePropagation();
+    }
+});
 tinymce.init({
   selector: "textarea",
   plugins: [

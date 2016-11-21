@@ -162,7 +162,7 @@ if (isset($_POST['btn-signup'])) {
           <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
           <input type="text" name="address" class="form-control" placeholder="Enter Address" maxlength="50" value="<?php echo $address ?>" />
         </div>
-        <span class="text-danger"><?php echo $address; ?></span>
+        <span class="text-danger"><?php echo $addressError; ?></span>
       </div>
 
       <div class="form-group">

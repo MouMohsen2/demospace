@@ -9,47 +9,51 @@ body {
   margin-top: 70px;
 }
 
+
 /* ----------- Front Page style ---------- */
-.form-group.required .control-label:after {
-  content:"*";
-  color:red;
-}
 
-
-/* -- Parallax -- */
-
-.odd {
-    background-attachment: fixed;
-    background-position: center;
-}
-
-.section {
-  padding-top: 50px;
-  padding-bottom: 50px;
-  min-height: 680px !important;
-  background-repeat: no-repeat;
-  background-size: cover;
-  /*filter: grayscale(100%);
-  -webkit-transition: filter 2s;
-  transition: filter 2s;*/
-}
-
-/*.section:hover {
-    min-height: 680px !important;
-    filter: grayscale(10%);
-}*/
-
+/* -- Navbar -- */
 .navbar-default {
   -webkit-transition: background 500ms ease-out;
   transition: background 500ms ease-out;
+  font-size: 100%;
+}
+
+.navbar-brand {
+  padding: 0px !important;
+}
+
+.navbar-brand>img{
+  margin-left: 20px;
+  height: 100%;
+  width: auto;
+  padding: 2px 2px 2px 5px;
+  -webkit-transition: height 500ms ease-out;
+  transition: height 500ms ease-out;
+}
+
+/* -- Parallax -- */
+.odd {
+    background-attachment: fixed;
+    background-position: center;
+    min-height: 680px !important;
+}
+
+.even {
+  min-height: 490px !important;
+}
+
+.section {
+  padding-bottom: 50px;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 
-/*-------------------------------*/
-/*      Code snippet by          */
-/*      @maridlcrmn              */
-/*-------------------------------*/
 
+/* ----------- Embedded Snippets ---------- */
+
+/* -- testimononial -- */
 
 section {
     padding-top: 50px;
@@ -61,23 +65,6 @@ section {
     text-align: center;
     margin-bottom: 30px;
 }
-
-blockquote {
-  color: white;
-  font-weight: bold;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-
-}
-
-.navbar-brand {
-  padding: 0px !important;
-}
-.navbar-brand>img {
-  height: 100%;
-  width: auto;
-  padding: 2px 2px 2px 5px;
-}
-
 
 /*-------------------------------*/
 /*    Carousel Fade Transition   */
